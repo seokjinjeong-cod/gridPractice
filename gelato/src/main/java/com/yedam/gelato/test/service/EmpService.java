@@ -5,5 +5,7 @@ import java.util.List;
 import com.yedam.gelato.test.EmpTest;
 
 public interface EmpService {
- List<EmpTest> select ();
+	
+	List<EmpTest> select ();
+	List<EmpTest> selectEmp (EmpTest emp);
 }

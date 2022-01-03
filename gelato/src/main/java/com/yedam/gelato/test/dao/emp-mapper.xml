@@ -8,4 +8,11 @@
 	ORDER BY employee_id
 </select>
 
+<select id="selectEmp" parameterType="com.yedam.gelato.test.EmpTest" resultType="com.yedam.gelato.test.EmpTest">
+	SELECT * 
+	FROM employees
+	WHERE employee_id = #{employeeId}
+	ORDER BY employee_id
+</select>
+
 </mapper>

@@ -20,4 +20,10 @@ public class EmpServiceImpl implements EmpService {
 		return mapper.select();
 	}
 
+	@Override
+	public List<EmpTest> selectEmp(EmpTest emp) {
+		return mapper.selectEmp(emp);
+	}
+
+
 }

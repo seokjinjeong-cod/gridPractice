@@ -8,9 +8,90 @@
 </head>
 <body>
 	<h1>그리드 테스트</h1>
+	<div>
+		검색창:<input type="text" id="employeeId" name="employeeId"><button type="button" onclick="select()">검색</button>
+	</div>
 	<div id="grid" style="width: 100%;"></div>
 	
 	<script>
+	
+	function select() {
+		let employeeId = document.getElementById("employeeId").value;
+		
+		let arr=[];
+		fetch("${pageContext.request.contextPath}/testAjax/select/"+employeeId)
+		.then(response=> response.json())
+		.then(result => {
+						
+			for (item of result) {
+				arr.push(item)
+			}
+			
+			console.log(arr)
+			
+			grid.resetData(arr);
+		})
+		
+		const grid = new tui.Grid({
+		      el: document.getElementById('grid'),
+		      data: {
+					api: {
+						readData : {
+							url : '${pageContext.request.contextPath}/testAjax/select/'+employeeId,
+							method:'GET'
+						}
+					}
+		      },
+		      scrollX: false,
+		      scrollY: false,
+		      columns: [
+		        {
+		          header: 'employeeId',
+		          name: 'employeeId'
+		        },
+		        {
+		          header: 'firstName',
+		          name: 'lastName'
+		        },
+		        {
+		          header: 'lastName',
+		          name: 'lastName'
+		        },
+		        {
+		          header: 'email',
+		          name: 'email'
+		        },
+		        {
+		          header: 'phoneNumber',
+		          name: 'phoneNumber'
+		        },
+		        {
+		          header: 'hireDate',
+		          name: 'hireDate'
+		        },
+		        {
+		          header: 'jobId',
+		          name: 'jobId'
+		        },
+		        {
+		          header: 'salary',
+		          name: 'salary'
+		        },
+		        {
+		          header: 'commissionPct',
+		          name: 'commissionPct'
+		        },
+		        {
+		          header: 'managerId',
+		          name: 'managerId'
+		        },
+		        {
+		          header: 'departmentId',
+		          name: 'departmentId'
+		        }
+		      ]
+		    });
+	}
 	
 	/* const gridData = [
 		  {
@@ -45,7 +126,7 @@
 		  }
 		]; */
 		
-		/* let gridData = {
+		/*let gridData = {
 				api: {
 					readData : {
 						url : '${pageContext.request.contextPath}/testAjax/info',
@@ -138,7 +219,7 @@
 		
 		console.log(ev)
 		console.log(ev.nativeEvent.srcElement.innerHTML)
-		console.log(ev.rowKey.innerHTML)
+		console.log(ev.rowKey)
 		console.log(ev.columnName)
 		
 		
@@ -146,6 +227,7 @@
 		//grid.hideColumn('item')
 		//grid.clear();
 	})
+	
 	</script>
 </body>
 </html>

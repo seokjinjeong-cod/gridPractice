@@ -7,4 +7,5 @@ import com.yedam.gelato.test.EmpTest;
 public interface EmpMapper {
 
 	List<EmpTest> select ();
+	List<EmpTest> selectEmp (EmpTest emp);
 }
